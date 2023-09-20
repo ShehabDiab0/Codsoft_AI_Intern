@@ -1,7 +1,5 @@
-import random
 import discord
 import datetime
-import commands
 from replit import db
 
 def mention_people(people):
@@ -10,18 +8,6 @@ def mention_people(people):
     mentions += person.mention + '\n'
   
   return mentions
-
-def get_gif_reaction_choices():
-  return 'angrystare, brofist, celebrate, cheers, clap, confused, cool, cry, evillaugh, facepalm, happy, headbang, laugh, mad, nervous, no, punch, sad, slowclap, smile, sneeze, stop, surprised, thumbsup, wave, wink, woah, yawn, yay, yes'
-
-def get_random_gif_reaction():
-    reactions_str = get_gif_reaction_choices()
-    reactions = reactions_str.split(', ')
-    
-    return random.choice(reactions)
-
-def valid_gif_reaction(reaction):
-  return reaction in set(get_gif_reaction_choices().split(', '))
 
 def make_event_datetime(time_components):
   year = int(time_components[0])
