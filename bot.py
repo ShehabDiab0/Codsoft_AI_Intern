@@ -11,7 +11,7 @@ from server import keep_alive
 
 def run_bot():
   client = discord.Client(intents=discord.Intents.all())
-  
+
   @client.event
   async def on_ready():
     print(f'We have logged in as {client.user}')
@@ -30,7 +30,7 @@ def run_bot():
   async def on_scheduled_event_create(event):
     await event.channel.send(f'{event.name} was created')
 
-  @tasks.loop(hours=24*7)
+  @tasks.loop(seconds=10)
   async def alarm_message():
     await client.wait_until_ready()
     embed = discord.Embed(title='Coinflip', \
@@ -43,7 +43,7 @@ def run_bot():
   async def on_message(message):
     if message.author == client.user:
       return
-    
+
     message_content = message.content
     message_tokens = message_content.split()
     command = message_tokens[0].lower() if len(message_tokens) > 0 else 'NONE'
@@ -56,8 +56,6 @@ def run_bot():
       await channel.send('pong')
     elif command == '!coinflip':
       await commands.coinflip(client, message)
-    elif command == '!gif':
-      await commands.gif(channel, message_tokens)
     elif command == '!quote':
       await commands.quote(channel)
     elif command == '!activate_schedule_vote':
@@ -76,7 +74,6 @@ def run_bot():
       await commands.edit_task(message, message_tokens)
     elif command == '!help':
       await commands.send_help_message(message)
-      
+
   keep_alive()
   client.run(os.environ['TOKEN'])
-
