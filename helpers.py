@@ -12,7 +12,7 @@ def mention_people(people):
   return mentions
 
 def get_gif_reaction_choices():
-  return  
+  return 'angrystare, brofist, celebrate, cheers, clap, confused, cool, cry, evillaugh, facepalm, happy, headbang, laugh, mad, nervous, no, punch, sad, slowclap, smile, sneeze, stop, surprised, thumbsup, wave, wink, woah, yawn, yay, yes'
 
 def get_random_gif_reaction():
     reactions_str = get_gif_reaction_choices()
